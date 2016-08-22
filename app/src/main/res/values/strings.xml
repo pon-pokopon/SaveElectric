@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">省エレ君</string>
+    <string name="label_spinner">契約アンペア</string>
+    <string name="label_last_used">前月メータ</string>
+    <string name="label_curr_used">今月メータ</string>
+    <string name="label_adjust">燃料費調整単価</string>
+    <string name="label_kwh">kWh</string>
+    <string name="label_yen">円</string>
+    <string name="label_yen_kwh">円/kWh</string>
+    <string name="label_yen_ampere">円/A</string>
+    <string name="label_meter_day">検針日</string>
+    <string name="label_day">日</string>
+    <string name="label_used">使用量</string>
+    <string name="label_amount">電気料金</string>
+    <string name="label_average">一日平均</string>
+    <string name="label_estimated">当月予測</string>
+    <string name="label_results">当月実績</string>
+    <string name="label_kwh_consumption">消費電力（kWH）</string>
+    <string name="label_yen_kwh_unit">単価（円/kWH）</string>
+
+    <string name="label_factor">電気係数一覧</string>
+    <string name="label_base_charge">基本料金単価</string>
+    <string name="label_unit_price">消費電力単価</string>
+    <string name="label_solar_tax">太陽発電付加金単価</string>
+    <string name="label_recycle_tax">再エネ発電賦課単価</string>
+    <string name="label_kwh_level">000kWh</string>
+    <string name="label_kwh_level2">120kWh</string>
+    <string name="label_kwh_level3">300kWh</string>
+    <string name="label_abolish">（2014年9月廃止）</string>
+
+    <string name="space1">" "</string>
+    <string name="space_zen_1">"　"</string>
+    <string name="space_zen_2">"　　"</string>
+    <string name="space_zen_4">"　　　　"</string>
+
+    <string name="word_month_for">月分</string>
+    <string name="word_year">年</string>
+    <string name="word_month">月</string>
+    <string name="word_day">日</string>
+    <string name="word_past_days">経過日数</string>
+    <string name="word_this_year">本年度</string>
+    <string name="word_last_year">前年度</string>
+    <string name="word_consumption">電気消費量</string>
+    <string name="word_transition">推移表</string>
+
+    <string name="word_parenthesis_l">（</string>
+    <string name="word_parenthesis_r">）</string>
+    <string name="word_colon">：</string>
+    <string name="word_circle">●</string>
+    <string name="word_midpoint">・</string>
+    <string name="word_from_to">～</string>
+
+    <string name="button_save">保　存</string>
+    <string name="button_factor">電気係数</string>
+    <string name="button_toggle">図切替</string>
+    <string name="button_expand">図拡大</string>
+    <string name="button_next">≫翌月</string>
+    <string name="button_prev">≪前月</string>
+    <string name="button_start">開始</string>
+
+    <string name="menu_settings">Settings</string>
+    <string name="menu_settei">設定</string>
+    <string name="menu_master">電気係数の更新</string>
+    <string name="menu_import">データの復元</string>
+    <string name="menu_export">データの退避</string>
+
+    <string name="check_message">次回からこの画面を表示しない</string>
+
+    <string name="message_import">復元データを上書きする為、\n現在のデータは消えてしまいます。\n本当に復元してもいいですか？</string>
+    <string name="message_imported">データを復元しました</string>
+    <string name="message_export">データを退避します</string>
+    <string name="message_exported">データを退避しました</string>
+    <string name="message_save">本当に更新してもいいですか？</string>
+    <string name="message_saved">データを保存しました</string>
+    <string name="message_update">電気係数の更新をします</string>
+    <string name="message_updated">電気係数の更新をしました</string>
+
+    <string name="error_file_not_found">ファイルが見つかりません</string>
+    <string name="error_occured">障害が発生しました</string>
+    <string name="error_invalid_data">データが不正です</string>
+    <string name="error_cannot_write">書き込みができません</string>
+    <string name="error_no_input">欄が入力されていません。</string>
+    <string name="error_used_too_big">使用した電気消費量が大き過ぎます</string>
+    <string name="error_invalid_meter_date">検針日は1～31までの数字で入力してください</string>
+
+</resources>

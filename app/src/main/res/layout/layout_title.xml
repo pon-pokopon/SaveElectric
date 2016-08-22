@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/title1"
+    android:orientation="vertical" >
+
+    <LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:gravity="center"
+	    android:layout_weight="4"
+	    android:orientation="vertical" >
+
+        <TextView
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+            />
+
+	</LinearLayout>
+
+    <LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:gravity="right"
+	    android:layout_weight="1"
+	    android:orientation="vertical" >
+
+	    <LinearLayout
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:gravity="right"
+		    android:orientation="horizontal" >
+
+	        <TextView
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+		    	android:layout_weight="6"
+			    android:text=""
+	            />
+
+	        <Button
+		        android:id="@+id/button_start"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+		   		android:layout_weight="1"
+		   		android:visibility="invisible"
+			    android:text="@string/button_start"
+		        />
+
+	        <TextView
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+		    	android:layout_weight="1"
+			    android:text=""
+	            />
+		</LinearLayout>
+
+	    <LinearLayout
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:gravity="center"
+		    android:orientation="vertical" >
+
+	    	<CheckBox
+		        android:id="@+id/check_no_title"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_gravity="center"
+			    android:textColor="#FF5A5A5A"
+			    android:text="@string/check_message"
+				/>
+
+		</LinearLayout>
+
+	</LinearLayout>
+
+    <LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:gravity="center"
+	    android:layout_weight="3"
+	    android:orientation="vertical" >
+
+        <TextView
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+            />
+
+	</LinearLayout>
+
+</LinearLayout>
