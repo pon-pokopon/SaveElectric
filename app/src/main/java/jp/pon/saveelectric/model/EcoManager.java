@@ -118,6 +118,22 @@ public class EcoManager {
 
 	/**
 	 * 検針日になったか（翌月処理が必要か）
+	 * （月は０オリジンとします。）
+	 *
+	 * @param 	date	日付
+	 * @return		判定結果
+	 */
+	public boolean isLatestInfo(Calendar date) {
+		int year = date.get(Calendar.YEAR);
+		int month = date.get(Calendar.MONTH);
+		int day = date.get(Calendar.DATE);
+
+		return isLatestInfo(year, month, day);
+	}
+
+	/**
+	 * 検針日になったか（翌月処理が必要か）
+	 * （月は０オリジンとします。）
 	 *
 	 * @param year			チェック年
 	 * @param month		チェック月
@@ -128,9 +144,9 @@ public class EcoManager {
 		boolean bool = false;
 
 		Calendar nowDate = Calendar.getInstance();
-		nowDate.add(Calendar.MONTH, 1);			//月の補正
 		Calendar meterDate = Calendar.getInstance();
 		meterDate.set(year, month, meterDay);
+		meterDate.add(Calendar.MONTH, -1);			//月の補正
 		if (nowDate.compareTo(meterDate) < 0) {
 			bool = true;
 		} else {
@@ -157,26 +173,24 @@ public class EcoManager {
 		//*********** 対象月の経過日数計算 ************
 		//対象月の総日数を計算
 		Calendar targetDate = Calendar.getInstance();
-		targetDate.set(entity.getKey().getYear(), entity.getKey().getMonth(), 1);
-		//month is 0-based. so need to minus 1.
-		targetDate.add(Calendar.MONTH, -1);
+		targetDate.set(entity.getKey().getYear(), entity.getKey().getMonth(), entity.getMeterDay());
+		//month is 0-based. so need to minus 2.
+		//（例.9月分請求：8月->カレンダー月の値=7）
+		targetDate.add(Calendar.MONTH, -2);			//請求月から請求対象月に変える
 		int daysOfMonth = targetDate.getActualMaximum(Calendar.DATE);
 		//前月データの検針日を取得
-		int meterDayPre	= entity.getKey().getPrevKey().getMeterDay(this);
+		int meterDayPre	=getMeterDay(entity.getKey().getPrevKey());
 		//請求日数を計算
 		int billingDates = daysOfMonth + entity.getMeterDay() - meterDayPre;
 
 		//*********** 経過日数と換算率の計算 ************
-		Calendar now = Calendar.getInstance();
-		int nowDay = now.get(Calendar.DATE);
-		Calendar meterDate = Calendar.getInstance();
-		int year     = entity.getKey().getYear();
-		int month    = entity.getKey().getMonth();
-		int meterDay = entity.getMeterDay();
-		meterDate.set(year, month, meterDay);
-		if (isLatestInfo(year, month, meterDay)) {
+		Calendar nowDate = Calendar.getInstance();
+		int nowDay = nowDate.get(Calendar.DATE);
+		targetDate.add(Calendar.MONTH, 2);			//請求月に戻す
+		if (isLatestInfo(targetDate)) {
+			targetDate.add(Calendar.MONTH, -1);		//検針日付に戻す
 			//スピナー選択月が最新分の場合
-			if (isMonthChanged(now, meterDate)) {
+			if (isMonthChanged(targetDate)) {
 				if (nowDay < entity.getMeterDay()) {
 					//月が変わり検針日より前の場合
 					daysPast = daysOfMonth - meterDayPre + nowDay;
@@ -259,6 +273,25 @@ public class EcoManager {
 		double dTotalAmount = dBasicFee + dUsedAmount + dAdjustFee + dEcoFee;
 
 		return (int) dTotalAmount;
+	}
+
+	/**
+	 * 検針日を取得する（キーで指定された月）
+	 *
+	 * @param key	 	電気キー
+	 * @return		検針日
+	 */
+	public int getMeterDay(ElectricKey key) {
+		int meterDay = DEFAULT_METER_DAY;
+
+		//DBデータを取得
+		TableEntity entity = findByKey(key);
+		if (entity != null) {
+			//DBからセット
+			meterDay = entity.getMeterDay();
+		}
+
+		return meterDay;
 	}
 
 	/**

@@ -219,7 +219,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 		entity.getKey().setYear(year);
 		entity.getKey().setMonth(month);
 		//スピナーに過去1年分を表示する
-		int meterDay = new ElectricKey(ampere).getMeterDay(ecoMan);
+		int meterDay = ecoMan.getMeterDay(new ElectricKey(ampere));
 		if (!ecoMan.isLatestInfo(year, month, meterDay)) {
 			entity.getKey().increment();
 		}
@@ -413,6 +413,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
 					showCalcArea();
 					//データを保存
 					saveTableInfo();
+					//DBデータを再表示する
+					showDataArea();
 					String str = String.format(Locale.getDefault(), "%d", entity.getKey().getMonth());
 					str += getString(R.string.word_month_for);
 					str += getString(R.string.message_saved);
@@ -587,7 +589,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 		if (entityCurr == null) {	//DBにデータがない場合
 			//前月のメータを使用（前月最終メータ＝今月開始メータ）
 			if (entityPrev != null && entityPrev.getCurrUsed() != 0) {
-				edLastUsed.setText(String.format(Locale.getDefault(), "%d", entityPrev.getCurrUsed()));
+				edLastUsed.setText(String.format(Locale.getDefault(), "%04d", entityPrev.getCurrUsed()));
 			}
 			edAdjust.setText(String.format(Locale.getDefault(), "%.2f", DEFAULT_ADJUST));
 			edMeterDay.setText(String.format(Locale.getDefault(), "%d", DEFAULT_METER_DAY));
@@ -596,10 +598,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
 				entityCurr.setLastUsed(entityPrev.getCurrUsed());
 			}
 			if (entityCurr.getLastUsed() != 0) {
-				edLastUsed.setText(String.format(Locale.getDefault(), "%d", entityCurr.getLastUsed()));
+				edLastUsed.setText(String.format(Locale.getDefault(), "%04d", entityCurr.getLastUsed()));
 			}
 			if (entityCurr.getCurrUsed() != 0) {
-				edCurrUsed.setText(String.format(Locale.getDefault(), "%d", entityCurr.getCurrUsed()));
+				edCurrUsed.setText(String.format(Locale.getDefault(), "%04d", entityCurr.getCurrUsed()));
 			}
 			edAdjust.setText(String.format(Locale.getDefault(), "%.2f", entityCurr.getAdjust()));
 			if (entityCurr.getMeterDay() > 0) {

@@ -68,7 +68,7 @@ public class EcoFactor {
 		MasterEntity targetEntity = new MasterEntity();
 		ElectricKey wKey = key.copy();
 		targetEntity.setUnitType(id);
-		MasterEntity entity = null;
+		MasterEntity entity;
 		while (true) {
 			targetEntity.setYear(wKey.getYear());
 			targetEntity.setMonth(wKey.getMonth());

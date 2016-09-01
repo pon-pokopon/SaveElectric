@@ -114,14 +114,15 @@ public class Utility {
 	}
 
 	/**
-	 * 月が変わったかのチェック
+	 * 月が変わったかのチェックをします。
+	 * （月は０オリジンとします。）
 	 *
-	 * @param now			対象日
-	 * @param meterDate	検針日
+	 * @param targetDate	対象日の日付
 	 * @return		有無
 	 */
-	public static boolean isMonthChanged(Calendar now, Calendar meterDate) {
-		now.add(Calendar.MONTH, 1);
-		return now.compareTo(meterDate) >= 0;
+	public static boolean isMonthChanged(Calendar targetDate) {
+		targetDate.set(Calendar.DATE, 1);
+		Calendar nowDate = Calendar.getInstance();
+		return nowDate.compareTo(targetDate) >= 0;
 	}
 }

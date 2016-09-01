@@ -2,8 +2,6 @@ package jp.pon.saveelectric.model;
 
 import java.util.Calendar;
 
-import jp.pon.saveelectric.entity.TableEntity;
-
 import static jp.pon.saveelectric.Const.*;
 
 /**
@@ -173,25 +171,6 @@ public class ElectricKey {
 			this.month = 1;
 			this.year++;
 		}
-	}
-
-	/**
-	 * 検針日を取得する（キーで指定された月）
-	 *
-	 * @param ecoMan	 	エコロジーマネージャー
-	 * @return		検針日
-	 */
-	public int getMeterDay(EcoManager ecoMan) {
-		int meterDay = DEFAULT_METER_DAY;
-
-		//DBデータを取得
-		TableEntity entity = ecoMan.findByKey(this);
-		if (entity != null) {
-			//DBからセット
-			meterDay = entity.getMeterDay();
-		}
-
-		return meterDay;
 	}
 
 
